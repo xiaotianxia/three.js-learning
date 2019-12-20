@@ -49,7 +49,7 @@
 			var textureLoader = new THREE.TextureLoader();
 			var earthGeometry = new THREE.SphereBufferGeometry(EARTH_RADIUS, 36, 36);
 			var earthMaterial = new THREE.MeshBasicMaterial({
-				map: textureLoader.load('textures/land_ocean_ice_cloud_2048.jpg'),
+				map: textureLoader.load('textures/planets/earth_atmos_2048.jpg'),
 			});
 			var earth = new THREE.Mesh(earthGeometry, earthMaterial);
 			scene.add(earth);
