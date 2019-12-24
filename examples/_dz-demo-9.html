@@ -8,20 +8,26 @@
 	</head>
 	<body>
 		<div id="container"></div>
+		<script src="js/libs/jszip.min.js"></script>
 		<script type="module">
 			import * as THREE from '../build/three.module.js';
 			import { OrbitControls } from './jsm/controls/OrbitControls.js';
 			import Stats from './jsm/libs/stats.module.js';
+			import { ThreeMFLoader } from './jsm/loaders/3MFLoader.js';
 			
 			var scene = new THREE.Scene();
-			scene.background = new THREE.Color(0xcce0ff);
+			scene.background = new THREE.Color(0xa0a0a0);
 
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-			camera.position.z = 25;
+			camera.position.set(-25, 15, 25);
 
 			var renderer = new THREE.WebGLRenderer();
 			
 			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.outputEncoding = THREE.sRGBEncoding;
+			// renderer.shadowMap.enabled = true;
+			// renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+			
 			var container = document.querySelector('#container');
 			container.appendChild(renderer.domElement);
 			
@@ -38,35 +44,25 @@
 			// scene.add(gridHelper);
 
 // ============================================================================
-			var clock = new THREE.Clock();
-			var group = new THREE.Group();
-			var box = new THREE.BoxGeometry(.1, .1, .1);
+			var hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444);
+			hemiLight.position.set(0, 100, 0);
+			scene.add(hemiLight);
 
-			for (var i = 0; i < 4000; i++) {
-				var clone = box.clone();
-				var mesh = new THREE.Mesh(clone, new THREE.MeshBasicMaterial({ color: getRandomColor() }));
-				mesh.position.x = THREE.Math.randFloatSpread(30);
-				mesh.position.y = THREE.Math.randFloatSpread(30);
-				mesh.position.z = THREE.Math.randFloatSpread(30);
-				group.add(mesh);
-			}
-
-			scene.add(group);
-
-			// var boxHelper = new THREE.BoxHelper(group, getRandomColor());
-			// scene.add(boxHelper);
-
-			function getRandomColor () {
-				var r = Math.floor(Math.random() * 255),
-					g = Math.floor(Math.random() * 255),
-					b = Math.floor(Math.random() * 255);
-				return 'rgb(' + r + ',' + g + ',' + b + ')';
-			} 
+			var dirLight = new THREE.DirectionalLight(0xffffff);
+			dirLight.position.set(- 0, 40, 50);
+			scene.add(dirLight);
+			
+			var manager = new THREE.LoadingManager();
+			var loader = new ThreeMFLoader(manager);
+			loader.load('./models/3mf/truck.3mf', function (object) {
+				object.quaternion.setFromEuler(new THREE.Euler(- Math.PI / 2, 0, 0));
+				object.position.y = -12;
+				scene.add(object);
+			}, res => {
+				console.log('已加载：' + 100 * (res.loaded / res.total) + '%');
+			});
 			
 			function animate() {
-				var time = clock.getElapsedTime() / 10; 
-				scene.rotation.set(time, time, time);
-				
 				requestAnimationFrame(animate);
 				renderer.render(scene, camera);
 				stats.update();
