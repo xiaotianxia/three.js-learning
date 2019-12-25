@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/lines/LineSegmentsGeometry.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/lines/LineMaterial.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/lines/LineSegmentsGeometry.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/lines/LineMaterial.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/lines/LineSegmentsGeometry.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/lines/LineMaterial.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/lines/LineSegmentsGeometry.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/lines/LineMaterial.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, LineSegmentsGeometry_js, LineMaterial_js) { 'use strict';
 

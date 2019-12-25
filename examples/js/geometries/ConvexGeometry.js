@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/math/ConvexHull.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/math/ConvexHull.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/math/ConvexHull.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/math/ConvexHull.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE));
 }(this, (function (exports, THREE, ConvexHull_js) { 'use strict';
 

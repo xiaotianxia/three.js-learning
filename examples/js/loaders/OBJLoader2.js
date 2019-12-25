@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/worker/parallel/OBJLoader2Parser.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/shared/MeshReceiver.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/shared/MaterialHandler.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/worker/parallel/OBJLoader2Parser.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/shared/MeshReceiver.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/shared/MaterialHandler.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/worker/parallel/OBJLoader2Parser.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/shared/MeshReceiver.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/shared/MaterialHandler.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/worker/parallel/OBJLoader2Parser.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/shared/MeshReceiver.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/shared/MaterialHandler.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, OBJLoader2Parser_js, MeshReceiver_js, MaterialHandler_js) { 'use strict';
 

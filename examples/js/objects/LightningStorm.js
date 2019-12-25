@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/geometries/LightningStrike.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/geometries/LightningStrike.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/geometries/LightningStrike.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/geometries/LightningStrike.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE));
 }(this, (function (exports, THREE, LightningStrike_js) { 'use strict';
 

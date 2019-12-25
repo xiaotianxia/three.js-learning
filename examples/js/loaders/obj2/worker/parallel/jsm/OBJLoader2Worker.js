@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/worker/parallel/OBJLoader2Parser.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/worker/parallel/WorkerRunner.js')) :
-	typeof define === 'function' && define.amd ? define(['/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/worker/parallel/OBJLoader2Parser.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/loaders/obj2/worker/parallel/WorkerRunner.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/worker/parallel/OBJLoader2Parser.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/worker/parallel/WorkerRunner.js')) :
+	typeof define === 'function' && define.amd ? define(['/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/worker/parallel/OBJLoader2Parser.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/loaders/obj2/worker/parallel/WorkerRunner.js'], factory) :
 	(global = global || self, factory(global.THREE, global.THREE));
 }(this, (function (OBJLoader2Parser_js, WorkerRunner_js) { 'use strict';
 

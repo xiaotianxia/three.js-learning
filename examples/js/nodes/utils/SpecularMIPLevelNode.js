@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/TempNode.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/FunctionNode.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/utils/MaxMIPLevelNode.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/TempNode.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/FunctionNode.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/utils/MaxMIPLevelNode.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/TempNode.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/FunctionNode.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/utils/MaxMIPLevelNode.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/TempNode.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/FunctionNode.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/utils/MaxMIPLevelNode.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, TempNode_js, FunctionNode_js, MaxMIPLevelNode_js) { 'use strict';
 

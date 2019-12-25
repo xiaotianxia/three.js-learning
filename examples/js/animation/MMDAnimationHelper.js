@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/animation/CCDIKSolver.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/animation/MMDPhysics.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/animation/CCDIKSolver.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/animation/MMDPhysics.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/animation/CCDIKSolver.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/animation/MMDPhysics.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/animation/CCDIKSolver.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/animation/MMDPhysics.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, CCDIKSolver_js, MMDPhysics_js) { 'use strict';
 

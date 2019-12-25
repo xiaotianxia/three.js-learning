@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/InputNode.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/accessors/UVNode.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/utils/ColorSpaceNode.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/ExpressionNode.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/InputNode.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/accessors/UVNode.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/utils/ColorSpaceNode.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/ExpressionNode.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/InputNode.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/accessors/UVNode.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/utils/ColorSpaceNode.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/ExpressionNode.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/InputNode.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/accessors/UVNode.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/utils/ColorSpaceNode.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/ExpressionNode.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, InputNode_js, UVNode_js, ColorSpaceNode_js, ExpressionNode_js) { 'use strict';
 

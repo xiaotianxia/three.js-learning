@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/materials/NodeMaterial.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/inputs/ScreenNode.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/materials/NodeMaterial.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/inputs/ScreenNode.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/materials/NodeMaterial.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/inputs/ScreenNode.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/materials/NodeMaterial.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/inputs/ScreenNode.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, NodeMaterial_js, ScreenNode_js) { 'use strict';
 

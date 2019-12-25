@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/shaders/CopyShader.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/postprocessing/ShaderPass.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/postprocessing/MaskPass.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/shaders/CopyShader.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/postprocessing/ShaderPass.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/postprocessing/MaskPass.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/shaders/CopyShader.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/postprocessing/ShaderPass.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/postprocessing/MaskPass.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/shaders/CopyShader.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/postprocessing/ShaderPass.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/postprocessing/MaskPass.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, CopyShader_js, ShaderPass_js, MaskPass_js) { 'use strict';
 

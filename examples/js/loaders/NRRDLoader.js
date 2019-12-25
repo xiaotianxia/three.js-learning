@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/libs/gunzip.module.min.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/misc/Volume.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/libs/gunzip.module.min.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/misc/Volume.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/libs/gunzip.module.min.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/misc/Volume.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/libs/gunzip.module.min.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/misc/Volume.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, gunzip_module_min_js, Volume_js) { 'use strict';
 

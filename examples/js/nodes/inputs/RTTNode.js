@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/NodeBuilder.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/materials/NodeMaterial.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/inputs/TextureNode.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/NodeBuilder.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/materials/NodeMaterial.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/inputs/TextureNode.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/NodeBuilder.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/materials/NodeMaterial.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/inputs/TextureNode.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/NodeBuilder.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/materials/NodeMaterial.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/inputs/TextureNode.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, NodeBuilder_js, NodeMaterial_js, TextureNode_js) { 'use strict';
 

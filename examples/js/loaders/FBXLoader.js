@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/libs/inflate.module.min.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/curves/NURBSCurve.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/libs/inflate.module.min.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/curves/NURBSCurve.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/libs/inflate.module.min.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/curves/NURBSCurve.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/libs/inflate.module.min.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/curves/NURBSCurve.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, inflate_module_min_js, NURBSCurve_js) { 'use strict';
 

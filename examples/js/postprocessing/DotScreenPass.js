@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/postprocessing/Pass.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/shaders/DotScreenShader.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/postprocessing/Pass.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/shaders/DotScreenShader.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/postprocessing/Pass.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/shaders/DotScreenShader.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/postprocessing/Pass.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/shaders/DotScreenShader.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, Pass_js, DotScreenShader_js) { 'use strict';
 

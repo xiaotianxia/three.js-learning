@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/NodeBuilder.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/inputs/ColorNode.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/accessors/PositionNode.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/materials/nodes/RawNode.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/NodeBuilder.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/inputs/ColorNode.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/accessors/PositionNode.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/materials/nodes/RawNode.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('three'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/NodeBuilder.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/inputs/ColorNode.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/accessors/PositionNode.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/materials/nodes/RawNode.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'three', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/NodeBuilder.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/inputs/ColorNode.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/accessors/PositionNode.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/materials/nodes/RawNode.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE, global.THREE, global.THREE, global.THREE));
 }(this, (function (exports, THREE, NodeBuilder_js, ColorNode_js, PositionNode_js, RawNode_js) { 'use strict';
 

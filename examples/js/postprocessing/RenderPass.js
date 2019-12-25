@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('/Users/denzel/Desktop/test/three.js/examples/jsm/postprocessing/Pass.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', '/Users/denzel/Desktop/test/three.js/examples/jsm/postprocessing/Pass.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/postprocessing/Pass.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/postprocessing/Pass.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE));
 }(this, (function (exports, Pass_js) { 'use strict';
 

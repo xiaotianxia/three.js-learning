@@ -3,8 +3,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/inputs/FloatNode.js'), require('/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/NodeLib.js')) :
-	typeof define === 'function' && define.amd ? define(['exports', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/inputs/FloatNode.js', '/Users/denzel/Desktop/test/three.js/examples/jsm/nodes/core/NodeLib.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/inputs/FloatNode.js'), require('/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/NodeLib.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/inputs/FloatNode.js', '/Users/denzel/Desktop/test/three.js-learning/examples/jsm/nodes/core/NodeLib.js'], factory) :
 	(global = global || self, factory(global.THREE = global.THREE || {}, global.THREE, global.THREE));
 }(this, (function (exports, FloatNode_js, NodeLib_js) { 'use strict';
 
