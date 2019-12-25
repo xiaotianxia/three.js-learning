@@ -9,6 +9,8 @@ var files = {
 		"_dz-demo-7",
 		"_dz-demo-8",
 		"_dz-demo-9",
+		"_dz-demo-10",
+		"_dz-demo-11",
 		"webgl_animation_cloth",
 		"webgl_animation_keyframes",
 		"webgl_animation_skinning_blending",

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - mirror</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="module">
+			import * as THREE from '../build/three.module.js';
+			import { OrbitControls } from './jsm/controls/OrbitControls.js';
+			import Stats from './jsm/libs/stats.module.js';
+			import { FBXLoader } from './jsm/loaders/FBXLoader.js';
+			import { GUI } from '../../examples/jsm/libs/dat.gui.module.js';
+			
+			var scene = new THREE.Scene();
+			scene.background = new THREE.Color(0xa0a0a0);
+
+			var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+			camera.position.set(-100, 50, 50);
+
+			var renderer = new THREE.WebGLRenderer();
+			
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.outputEncoding = THREE.sRGBEncoding;
+			
+			var container = document.querySelector('#container');
+			container.appendChild(renderer.domElement);
+			
+			var orbitControls = new OrbitControls(camera, renderer.domElement);
+
+			var stats = new Stats();
+			stats.domElement.style.position = 'absolute';
+			stats.domElement.style.top = '0px';
+			container.appendChild(stats.domElement);
+
+			// var axesHelper = new THREE.AxesHelper(100);
+			// scene.add(axesHelper);
+			var gridHelper = new THREE.GridHelper(200, 200);
+			scene.add(gridHelper);
+
+// ============================================================================
+			var hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444);
+			hemiLight.position.set(0, 100, 0);
+			scene.add(hemiLight);
+
+			var dirLight = new THREE.DirectionalLight(0xffffff);
+			dirLight.position.set(- 0, 40, 50);
+			scene.add(dirLight);
+			
+			var clock = new THREE.Clock();
+			var mixer;
+			var loader = new FBXLoader();
+			loader.load('models/fbx/Pikachu.fbx', function (object) {
+				mixer = new THREE.AnimationMixer(object);
+				var action = mixer.clipAction(object.animations[3]);
+				action.play();
+				object.scale.setScalar(.1);
+				
+				var gui = {
+					helper: true //模型辅助线
+				};
+				var datGui = new GUI();
+				var gui_animations = datGui.addFolder("animations");
+
+				var actions = []; //所有的动画数组
+				for (var i = 0; i < object.animations.length; i++) {
+					createAction(i);
+				}
+
+				function createAction(i) {
+					actions[i] = mixer.clipAction(object.animations[i]);
+					gui["action" + i] = function () {
+						for (var j = 0; j < actions.length; j++) {
+							if (j === i) {
+								actions[j].play();
+							} else {
+								actions[j].stop();
+							}
+						}
+					};
+
+					gui_animations.add(gui, "action" + i);
+				}
+
+				gui.stop = function () {
+					for (var i = 0; i < actions.length; i++) {
+						actions[i].stop();
+					}
+				};
+
+				datGui.add(gui, "stop");
+
+
+
+				scene.add(object);
+			}, res => {
+				console.log('已加载：' + 100 * (res.loaded / res.total) + '%');
+			});
+			
+			function animate() {
+				requestAnimationFrame(animate);
+				renderer.render(scene, camera);
+				stats.update();
+				var delta = clock.getDelta();
+				if (mixer) mixer.update(delta);
+			}
+			animate();
+
+// ============================================================================
+		</script>
+	</body>
+</html>
