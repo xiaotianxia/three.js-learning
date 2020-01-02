@@ -63,7 +63,6 @@
 		var listener = new THREE.AudioListener();
 		var audio = new THREE.Audio(listener);
 		var mediaElement = new Audio('sounds/Do-Re-Mi.mp3');
-		// mediaElement.loop = true;
 		mediaElement.play();
 
 		audio.setMediaElementSource(mediaElement);
@@ -102,7 +101,7 @@
 				var box_i = group.children[i];
 				if (box_i) {
 					var height = frequencues[i] / 20;
-					box_i.scale.set(1, height || 1, 1);
+					box_i.scale.set(1, height || .5, 1);
 				}
 			}
 		}
