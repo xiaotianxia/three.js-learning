@@ -13,7 +13,8 @@
 	<script type="module">
 		import * as THREE from '../build/three.module.js';
 		import { OrbitControls } from './jsm/controls/OrbitControls.js';
-		import Stats from './jsm/libs/stats.module.js';
+		import { MTLLoader } from './jsm/loaders/MTLLoader.js';
+		import { OBJLoader } from './jsm/loaders/OBJLoader.js';
 
 		var scene = new THREE.Scene();
 		scene.background = new THREE.Color(0xcce0ff);
@@ -28,73 +29,71 @@
 		container.appendChild(renderer.domElement);
 
 		var orbitControls = new OrbitControls(camera, renderer.domElement);
+		orbitControls.keys = {
+			LEFT: 37, //left arrow
+			UP: 38, // up arrow
+			RIGHT: 39, // right arrow
+			BOTTOM: 40 // down arrow
+		};
 
-		var stats = new Stats();
-		stats.domElement.style.position = 'absolute';
-		stats.domElement.style.top = '0px';
-		container.appendChild(stats.domElement);
+		var axesHelper = new THREE.AxesHelper(5);
+		scene.add(axesHelper);
+		var gridHelper = new THREE.GridHelper(100, 100);
+		scene.add(gridHelper);
 
-		// var axesHelper = new THREE.AxesHelper(5);
-		// scene.add(axesHelper);
-		// var gridHelper = new THREE.GridHelper(30, 30);
-		// scene.add(gridHelper);
-
-		var light = new THREE.DirectionalLight(0xffffff, 1);
-		light.position.set(1, 1, 1).normalize();
+		var light = new THREE.AmbientLight(0xffffff);
 		scene.add(light);
 
 		// ============================================================================
-		for (var i = 0; i < 300; i++) {
-			var box = new THREE.BoxGeometry(1, 1, 1);
-			var mesh = new THREE.Mesh(box, new THREE.MeshLambertMaterial({ color: getRandomColor() }));
-			mesh.position.x = THREE.Math.randFloatSpread(50);
-			mesh.position.y = THREE.Math.randFloatSpread(50);
-			mesh.position.z = THREE.Math.randFloatSpread(50);
-			scene.add(mesh);
+		var mtlLoader = new MTLLoader();
+		var objLoader = new OBJLoader();
+		function loadMTL (filename) {
+			return new Promise((resolve, reject) => {
+				let filePath = './models/dz_test/bedroom/'; 
+				mtlLoader.setPath(filePath)
+					.load(`${filename}.mtl`, function (materials) {
+						materials.preload();
+						objLoader.setMaterials(materials)
+							.setPath(filePath)
+							.load(`${filename}.obj`, function (object) {
+								if (object) {
+									resolve(object);
+								} else {
+									reject('error');
+								}
+							});
+					});
+			});
 		}
 
+		var group = new THREE.Group();
+		async function loadModels () {
+			// bed
+			var bed = await loadMTL('bed');
+			bed.scale.setScalar(.1);
 
-		var boxHelper = new THREE.BoxHelper(scene, getRandomColor());
-		scene.add(boxHelper);
+			// bedside table
+			var bedsideTable = await loadMTL('bedsideTable');
+			bedsideTable.scale.setScalar(.1);
 
-		function getRandomColor() {
-			var r = Math.floor(Math.random() * 255),
-				g = Math.floor(Math.random() * 255),
-				b = Math.floor(Math.random() * 255);
-			return 'rgb(' + r + ',' + g + ',' + b + ')';
+
+			
+			scene.add(bed);
+			scene.add(bedsideTable);
 		}
 
-		var rayCaster = new THREE.Raycaster();
-		var mouse = new THREE.Vector2(-1, -1);
-		var intersected;
-		container.addEventListener('click', onMouseClick);
-		function onMouseClick(e) {
-			e.preventDefault();
-			mouse.x = e.clientX / container.clientWidth * 2 - 1;
-			mouse.y = -e.clientY / container.clientHeight * 2 + 1;
-
-
-			rayCaster.setFromCamera(mouse, camera);
-			var intersects = rayCaster.intersectObjects(scene.children, false);
-
-			if (intersects.length > 0) {
-				intersected = intersects[0].object;
-				if (intersected.type === 'Mesh') {
-					intersected.material.color.setHex(0xff0000);
-				}
-				console.log(intersects[0]);
-			}
-		}
-
+		
+		
+		
+		
+		
+		loadModels();
+		// ============================================================================
 		function animate() {
 			requestAnimationFrame(animate);
 			renderer.render(scene, camera);
-			stats.update();
 		}
 		animate();
-
-// ============================================================================
 	</script>
 </body>
-
 </html>

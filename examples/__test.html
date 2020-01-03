@@ -2,104 +2,166 @@
 <html lang="en">
 
 <head>
-    <title>three.js webgl - interactive - voxel painter</title>
+    <title>three.js webaudio - orientation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="main.css">
-    <style>
-        body {
-            background-color: #f0f0f0;
-            color: #444;
-        }
-
-        a {
-            color: #08f;
-        }
-    </style>
 </head>
 
 <body>
 
+    <audio loop id="music" preload="auto" style="display: none">
+        <source src="sounds/376737_Skullbeatz___Bad_Cat_Maste.ogg" type="audio/ogg">
+        <source src="sounds/376737_Skullbeatz___Bad_Cat_Maste.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="overlay">
+        <div>
+            <button id="startButton">Click to Play</button>
+            <p>Audio playback requires user interaction.</p>
+        </div>
+    </div>
+    <div id="container"></div>
     <div id="info">
-        <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - voxel painter - webgl<br>
-        <strong>click</strong>: add voxel, <strong>shift + click</strong>: remove voxel
+        <a href="https://threejs.org" target="_blank" rel="noopener noreferrer">three.js</a> webaudio -
+        orientation<br />
+        music by <a href="http://www.newgrounds.com/audio/listen/376737" target="_blank"
+            rel="noopener noreferrer">skullbeatz</a>
     </div>
 
     <script type="module">
-
         import * as THREE from '../build/three.module.js';
+
         import { OrbitControls } from './jsm/controls/OrbitControls.js';
+        import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
-        var camera, scene, renderer;
-        var plane;
-        var mouse, raycaster, isShiftDown = false;
+        var scene, camera, renderer;
 
-        var rollOverMesh, rollOverMaterial;
-        var cubeGeo, cubeMaterial;
-
-        var objects = [];
-
-        init();
-        render();
+        var startButton = document.getElementById('startButton');
+        startButton.addEventListener('click', init);
 
         function init() {
 
-            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-            camera.position.set(500, 800, 1300);
-            camera.lookAt(0, 0, 0);
+            var overlay = document.getElementById('overlay');
+            overlay.remove();
 
-            scene = new THREE.Scene();
-            scene.background = new THREE.Color(0xf0f0f0);
+            var container = document.getElementById('container');
 
-            // roll-over helpers
-
-            var rollOverGeo = new THREE.BoxBufferGeometry(50, 50, 50);
-            rollOverMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, opacity: 0.5, transparent: true });
-            rollOverMesh = new THREE.Mesh(rollOverGeo, rollOverMaterial);
-            scene.add(rollOverMesh);
-
-            // cubes
-
-            cubeGeo = new THREE.BoxBufferGeometry(50, 50, 50);
-            cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xfeb74c, map: new THREE.TextureLoader().load('textures/square-outline-textured.png') });
-
-            // grid
-
-            var gridHelper = new THREE.GridHelper(1000, 20);
-            scene.add(gridHelper);
-            
             //
 
-            raycaster = new THREE.Raycaster();
-            mouse = new THREE.Vector2();
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.set(3, 2, 3);
 
-            var geometry = new THREE.PlaneBufferGeometry(1000, 1000);
-            geometry.rotateX(- Math.PI / 2);
+            var reflectionCube = new THREE.CubeTextureLoader()
+                .setPath('textures/cube/SwedishRoyalCastle/')
+                .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg'], function(r) {
+                    console.log(r);
+                });
+            reflectionCube.format = THREE.RGBFormat;
 
-            plane = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ visible: false }));
-            scene.add(plane);
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xa0a0a0);
+            scene.fog = new THREE.Fog(0xa0a0a0, 2, 20);
 
-            objects.push(plane);
+            //
 
-            // lights
+            var hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444);
+            hemiLight.position.set(0, 20, 0);
+            scene.add(hemiLight);
 
-            var ambientLight = new THREE.AmbientLight(0x606060);
-            scene.add(ambientLight);
+            var dirLight = new THREE.DirectionalLight(0xffffff);
+            dirLight.position.set(5, 5, 0);
+            dirLight.castShadow = true;
+            dirLight.shadow.camera.top = 1;
+            dirLight.shadow.camera.bottom = - 1;
+            dirLight.shadow.camera.left = - 1;
+            dirLight.shadow.camera.right = 1;
+            dirLight.shadow.camera.near = 0.1;
+            dirLight.shadow.camera.far = 20;
+            scene.add(dirLight);
 
-            var directionalLight = new THREE.DirectionalLight(0xffffff);
-            directionalLight.position.set(1, 0.75, 0.5).normalize();
-            scene.add(directionalLight);
+            // scene.add( new CameraHelper( dirLight.shadow.camera ) );
+
+            //
+
+            var mesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(50, 50), new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false }));
+            mesh.rotation.x = - Math.PI / 2;
+            mesh.receiveShadow = true;
+            scene.add(mesh);
+
+            var grid = new THREE.GridHelper(50, 50, 0x888888, 0x888888);
+            scene.add(grid);
+
+            //
+
+            var listener = new THREE.AudioListener();
+            camera.add(listener);
+
+            var audioElement = document.getElementById('music');
+            audioElement.play();
+
+            var positionalAudio = new THREE.PositionalAudio(listener);
+            positionalAudio.setMediaElementSource(audioElement);
+            positionalAudio.setRefDistance(1);
+            positionalAudio.setDirectionalCone(180, 230, 0.1);
+
+            var helper = new THREE.PositionalAudioHelper(positionalAudio, 0.1);
+            positionalAudio.add(helper);
+
+            //
+
+            var gltfLoader = new GLTFLoader();
+            gltfLoader.load('models/gltf/BoomBox/glTF-Binary/BoomBox.glb', function (gltf) {
+
+                var boomBox = gltf.scene;
+                boomBox.position.set(0, 0.2, 0);
+                boomBox.scale.set(20, 20, 20);
+
+                boomBox.traverse(function (object) {
+
+                    if (object.isMesh) {
+
+                        object.material.envMap = reflectionCube;
+                        object.geometry.rotateY(- Math.PI);
+                        object.castShadow = true;
+
+                    }
+
+                });
+
+                boomBox.add(positionalAudio);
+                scene.add(boomBox);
+                animate();
+
+            });
+
+            // sound is damped behind this wall
+
+            var wallGeometry = new THREE.BoxBufferGeometry(2, 1, 0.1);
+            var wallMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
+
+            var wall = new THREE.Mesh(wallGeometry, wallMaterial);
+            wall.position.set(0, 0.5, - 0.5);
+            scene.add(wall);
+
+
+            //
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
-            var orbitControls = new OrbitControls(camera, renderer.domElement);
-            renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild(renderer.domElement);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.shadowMap.enabled = true;
+            container.appendChild(renderer.domElement);
 
-            document.addEventListener('mousemove', onDocumentMouseMove, false);
-            document.addEventListener('mousedown', onDocumentMouseDown, false);
-            document.addEventListener('keydown', onDocumentKeyDown, false);
-            document.addEventListener('keyup', onDocumentKeyUp, false);
+            //
+
+            var controls = new OrbitControls(camera, renderer.domElement);
+            // controls.target.set(0, 0.1, 0);
+            controls.update();
+            // controls.minDistance = 0.5;
+            // controls.maxDistance = 10;
+            // controls.maxPolarAngle = 0.5 * Math.PI;
 
             //
 
@@ -116,97 +178,9 @@
 
         }
 
-        function onDocumentMouseMove(event) {
+        function animate() {
 
-            event.preventDefault();
-
-            mouse.set((event.clientX / window.innerWidth) * 2 - 1, - (event.clientY / window.innerHeight) * 2 + 1);
-
-            raycaster.setFromCamera(mouse, camera);
-
-            var intersects = raycaster.intersectObjects(objects);
-            console.log(intersects);
-
-            if (intersects.length > 0) {
-
-                var intersect = intersects[0];
-
-                rollOverMesh.position.copy(intersect.point).add(intersect.face.normal);
-                // rollOverMesh.position.divideScalar(50).floor().multiplyScalar(50).addScalar(25);
-
-            }
-
-            render();
-
-        }
-
-        function onDocumentMouseDown(event) {
-
-            event.preventDefault();
-
-            mouse.set((event.clientX / window.innerWidth) * 2 - 1, - (event.clientY / window.innerHeight) * 2 + 1);
-
-            raycaster.setFromCamera(mouse, camera);
-
-            var intersects = raycaster.intersectObjects(objects);
-
-            if (intersects.length > 0) {
-
-                var intersect = intersects[0];
-
-                // delete cube
-
-                if (isShiftDown) {
-
-                    if (intersect.object !== plane) {
-
-                        scene.remove(intersect.object);
-
-                        objects.splice(objects.indexOf(intersect.object), 1);
-
-                    }
-
-                    // create cube
-
-                } else {
-
-                    var voxel = new THREE.Mesh(cubeGeo, cubeMaterial);
-                    voxel.position.copy(intersect.point).add(intersect.face.normal);
-                    // voxel.position.divideScalar(50).floor().multiplyScalar(50).addScalar(25);
-                    scene.add(voxel);
-
-                    objects.push(voxel);
-
-                }
-
-                render();
-
-            }
-
-        }
-
-        function onDocumentKeyDown(event) {
-
-            switch (event.keyCode) {
-
-                case 16: isShiftDown = true; break;
-
-            }
-
-        }
-
-        function onDocumentKeyUp(event) {
-
-            switch (event.keyCode) {
-
-                case 16: isShiftDown = false; break;
-
-            }
-
-        }
-
-        function render() {
-
+            requestAnimationFrame(animate);
             renderer.render(scene, camera);
 
         }
