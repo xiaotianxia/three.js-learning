@@ -169,7 +169,6 @@
 
 			// ==========/video=======
 			
-
 			scene.add(bed);
 			scene.add(bedsideTableGroup);
 			scene.add(cat);
@@ -183,8 +182,10 @@
 		}
 
 		
-		
-		
+		window.addEventListener('resize', onWindowResize, false);
+		function onWindowResize() {
+			renderer.setSize(window.innerWidth, window.innerHeight);
+		}
 		
 		
 		loadModels();
