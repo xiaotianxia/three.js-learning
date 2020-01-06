@@ -40,9 +40,9 @@
 			BOTTOM: 40 // down arrow
 		};
 
-		var axesHelper = new THREE.AxesHelper(5);
-		scene.add(axesHelper);
-		var gridHelper = new THREE.GridHelper(100, 100);
+		// var axesHelper = new THREE.AxesHelper(5);
+		// scene.add(axesHelper);
+		var gridHelper = new THREE.GridHelper(62, 20, 0x000000, 0x000000);
 		scene.add(gridHelper);
 
 		var light = new THREE.AmbientLight(0xffffff);
@@ -74,6 +74,7 @@
 			// bed
 			var bed = await loadMTL('bed');
 			bed.scale.setScalar(.1);
+			bed.position.set(0, 2.2, 0);
 			
 			// bedside table
 			var bedsideTable = await loadMTL('bedsideTable');
@@ -97,7 +98,7 @@
 			// puff
 			var puff = await loadMTL('puff');
 			puff.scale.setScalar(.06);
-			puff.position.set(-11, 0, -17);
+			puff.position.set(-11, .8, -17);
 			
 			// window
 			var window = await loadMTL('window');
