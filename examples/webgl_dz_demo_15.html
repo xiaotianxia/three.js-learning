@@ -9,7 +9,9 @@
 </head>
 
 <body>
-	<div id="container"></div>
+	<div id="container">
+		<canvas id="canvas"></canvas>
+	</div>
 	<script type="module">
 		import * as THREE from '../build/three.module.js';
 		import { OrbitControls } from './jsm/controls/OrbitControls.js';
@@ -20,13 +22,15 @@
 		scene.background = new THREE.Color(0xcce0ff);
 
 		var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-		camera.position.z = 50;
+		camera.position.set(-30, 30, -30);
 
-		var renderer = new THREE.WebGLRenderer();
-
-		renderer.setSize(window.innerWidth, window.innerHeight);
 		var container = document.querySelector('#container');
-		container.appendChild(renderer.domElement);
+		var canvas = container.querySelector('#canvas');
+		
+		var renderer = new THREE.WebGLRenderer({
+			canvas: canvas
+		});
+		renderer.setSize(window.innerWidth, window.innerHeight);
 
 		var orbitControls = new OrbitControls(camera, renderer.domElement);
 		orbitControls.keys = {
@@ -66,20 +70,115 @@
 			});
 		}
 
-		var group = new THREE.Group();
 		async function loadModels () {
 			// bed
 			var bed = await loadMTL('bed');
 			bed.scale.setScalar(.1);
-
+			
 			// bedside table
 			var bedsideTable = await loadMTL('bedsideTable');
+			var bedsideTableGroup = new THREE.Group();
 			bedsideTable.scale.setScalar(.1);
-
-
+			bedsideTableGroup.add(bedsideTable);
 			
+			var lamp = await loadMTL('deskLight');
+			lamp.scale.setScalar(.06);
+			lamp.position.set(0, 6.7, 4);
+			bedsideTableGroup.add(lamp);
+
+			bedsideTableGroup.position.set(11, 0, -17);
+
+			// cat
+			var cat = await loadMTL('cat');
+			cat.scale.setScalar(.06);
+			// cat.rotation.y = .5 * Math.PI;
+			cat.position.set(0, 2.4, -10);
+			
+			// puff
+			var puff = await loadMTL('puff');
+			puff.scale.setScalar(.06);
+			puff.position.set(-11, 0, -17);
+			
+			// window
+			var window = await loadMTL('window');
+			console.log(window);
+			window.scale.setScalar(.1);
+			window.position.set(-30, 0, 0);
+			window.rotation.y = .5 * Math.PI;
+
+			// wardrobe
+			var wardrobe = await loadMTL('wardrobe');
+			wardrobe.rotation.y = -.5 * Math.PI;
+			wardrobe.scale.setScalar(.06);
+			wardrobe.position.set(20, 0, -10);
+			
+
+			// study_desk
+			var study_desk = await loadMTL('study_desk');
+			study_desk.rotation.y = Math.PI;
+			study_desk.scale.setScalar(.1);
+			study_desk.position.set(-20, 0, 10);
+
+			// door
+			var door = await loadMTL('door');
+			door.rotation.y = Math.PI;
+			door.scale.setScalar(.1);
+			door.position.set(12, 0, 13);
+
+			// wall_tv
+			var wall_tv = await loadMTL('wall_tv');
+			wall_tv.rotation.y = Math.PI;
+			wall_tv.scale.setScalar(.12);
+			wall_tv.position.set(0, 10, 10);
+
+			// plant
+			var plant = await loadMTL('plant');
+			plant.rotation.y = Math.PI;
+			plant.scale.setScalar(.1);
+			plant.position.set(20, 0, 1);
+
+
+			// ==========video=======
+			var video = document.createElement('video');
+			video.crossOrigin = 'anonymous';
+			video.width = 550;
+			video.heigth = 450;
+			video.src = './textures/cat.mp4';
+			video.play();
+
+			var videoTexture = new THREE.VideoTexture(video);
+			videoTexture.minFilter = THREE.LinearFilter;
+			videoTexture.format = THREE.RGBFormat;
+
+			var planeGeometry = new THREE.PlaneGeometry(11, 6.2);
+			var material = new THREE.MeshBasicMaterial({ color: 0xffffff, map: videoTexture, side: THREE.DoubleSide });
+			var plane = new THREE.Mesh(planeGeometry, material);
+
+			plane.position.set(0, 10, 9);
+
+			scene.add(plane);
+
+			canvas.addEventListener('click', e => {
+				if (video.paused) {
+					video.play();
+				} else {
+					video.pause();
+				}
+			});
+
+			// ==========/video=======
+			
+
 			scene.add(bed);
-			scene.add(bedsideTable);
+			scene.add(bedsideTableGroup);
+			scene.add(cat);
+			scene.add(puff);
+			scene.add(window);
+			scene.add(wardrobe);
+			scene.add(study_desk);
+			scene.add(door);
+			scene.add(wall_tv);
+			scene.add(plant);
 		}
 
 		
