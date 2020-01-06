@@ -39,6 +39,7 @@
 			RIGHT: 39, // right arrow
 			BOTTOM: 40 // down arrow
 		};
+		orbitControls.maxPolarAngle = .5 * Math.PI;
 
 		// var axesHelper = new THREE.AxesHelper(5);
 		// scene.add(axesHelper);
@@ -102,7 +103,6 @@
 			
 			// window
 			var window = await loadMTL('window');
-			console.log(window);
 			window.scale.setScalar(.1);
 			window.position.set(-30, 0, 0);
 			window.rotation.y = .5 * Math.PI;
