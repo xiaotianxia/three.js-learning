@@ -6,11 +6,25 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link type="text/css" rel="stylesheet" href="main.css">
+	<style>
+		#display {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			padding: 10px;
+			background-color:rgba(0, 0, 0, .8);
+			color: #fff;
+			border-radius: 4px;
+			display: none;
+		}
+	</style>
 </head>
 
 <body>
 	<div id="container">
 		<canvas id="canvas"></canvas>
+		<span id="display"></span>
 	</div>
 	<script type="module">
 		import * as THREE from '../build/three.module.js';
@@ -50,7 +64,24 @@
 		scene.add(light);
 
 		// ============================================================================
-		var mtlLoader = new MTLLoader();
+		var manager = new THREE.LoadingManager();
+		manager.onStart = function (url, itemsLoaded, itemsTotal) {
+			console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+		};
+		manager.onLoad = function () {
+			console.log('Loading complete!');
+			display.style.display = 'none';
+		};
+		manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+			console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+			display.style.display = 'block';
+			display.innerHTML = `loaging: ${(100 * itemsLoaded / itemsTotal).toFixed(2)}%`;
+		};
+		manager.onError = function (url) {
+			console.log('There was an error loading ' + url);
+		};
+
+		var mtlLoader = new MTLLoader(manager);
 		var objLoader = new OBJLoader();
 		function loadMTL (filename) {
 			return new Promise((resolve, reject) => {
