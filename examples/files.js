@@ -16,6 +16,7 @@ var files = {
 		"webgl_dz_demo_13",
 		"webgl_dz_demo_14",
 		"webgl_dz_demo_15",
+		"webgl_dz_demo_16",
 		"webgl_animation_cloth",
 		"webgl_animation_keyframes",
 		"webgl_animation_skinning_blending",

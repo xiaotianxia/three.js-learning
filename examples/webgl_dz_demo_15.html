@@ -78,7 +78,7 @@
 			if (itemsLoaded === 33) {
 				display.style.display = 'none';
 			}
-			display.innerHTML = `loaging: ${(100 * itemsLoaded / 35).toFixed(2)}%`;
+			display.innerHTML = `loading: ${(100 * itemsLoaded / 35).toFixed(2)}%`;
 		};
 		manager.onError = function (url) {
 			console.log('There was an error loading ' + url);
